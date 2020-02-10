@@ -1,0 +1,51 @@
+body
+{
+	font-size: 12px;
+	font-family: 微软雅黑,宋体;
+}
+.log_maindiv
+{
+	top:20%;
+	left:30%;
+	position:absolute;
+	width: 450px;
+	height: 300px;	  
+}
+.log_submitdiv
+{
+	border-width:1px;
+	border-color:#CCCCCC;
+	padding-top:12px;
+	padding-left:12px;
+	padding-right:12px;
+	background-image:url(images/login.gif);
+	background-repeat:no-repeat;
+}
+#divLoginAlert
+{
+	font-weight:bold;
+	color:Red;
+	font-size:14px;
+	margin-top:8px;
+	text-align:center;
+}
+input[type="text"]
+{
+	border:solid 1px #375B9E;
+	padding:2px;
+	background-image:url(images/input_text_bg.gif);
+	background-repeat:repeat-x;
+	background-position:left top;
+	width:130px;
+}
+input[type="password"]
+{
+	border:solid 1px #375B9E;
+	padding:2px;
+	background-image:url(images/input_text_bg.gif);
+	background-repeat:repeat-x;
+	background-position:left top;
+	width:130px;
+}
+
+

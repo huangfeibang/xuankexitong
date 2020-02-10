@@ -1,0 +1,119 @@
+﻿
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<script src="Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+<script src="Scripts/daoying.js" type="text/javascript"></script>
+
+<script src="../../Scripts/jquery-1.5.1.js" type="text/javascript"></script>
+<head><meta charset="UTF-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><title>
+	登录
+</title>
+    <!--判断-->
+
+    <link href="Content/default/StyleLogin.css" th:href="@{/Content/default/StyleLogin.css}" rel="stylesheet" type="text/css" />
+    <link href="Content/default/login.css" th:href="@{/Content/default/login.css}" rel="stylesheet" type="text/css" />
+</head>
+<body  onload="daoying()">
+    <form action="/user" method="post">
+    <div class="login">
+		<div class="logo">
+            <img alt="" src="./Content/default/images/jiaowulogo.png"> <img alt="" src="./Content/default/images/jiaowu.png" class="pageTitle" />
+        </div>
+        <div style="color: Red; font-size: 26px; text-align: center;">2018-2019学年冬季学期</div>
+
+        <div class="loginbox">
+  			<div class="loginbgimg">
+                <img alt="" src="Content/default/images/jiaowubgimg.jpg"/>
+            </div>
+			<div class="userlogin">
+				<div id="userloign" class="dengl">用户登录</div>
+                <table style="width: 100%;">
+                    <tr>
+                    <td style="width: 6em;">学号/工号：</td>
+                    <td>
+                        <input class="input long" id="txtUserName" name="txtUserName" style="width:155px" type="text" value="" />
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="width: 6em;">密码：</td>
+                    <td>
+                        <input class="input long" id="txtPassword" name="txtPassword" style="width:155px" type="password" value="" />
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="width: 6em;">校验码：</td>
+                    <td>
+                        <input class="input code" id="txtValiCode" name="txtValiCode" style="width:80px" type="text" value="" />
+                        <img id="Img2" onclick="return ChangeValiCode('http://xk.autoisp.shu.edu.cn/Login/GetValidateCode?%20%20+%20GetTimestamp()')"
+                            src="http://xk.autoisp.shu.edu.cn/Login/GetValidateCode?%20%20+%20GetTimestamp()" alt="验证码"
+                            style="cursor: pointer;"  class="codeImg"/>
+                    </td>
+                    </tr>
+                </table>
+                
+                <input type="submit" id="btnCheckLogin"  class="btnlogin" value="登 录" onclick="return ValidateInput()" />
+                <br /><br />
+                <span></span>
+				<br />
+				<a href="http://services.shu.edu.cn/" class="forPsw">忘记密码了？</a>
+
+                <div id="divError" style="width: 100%; color: Red; font-size: 14px; text-align: center;">
+                    
+                </div>
+                <div id="divLoginAlert" style="width: 100%; color: Red; font-size: 14px; text-align: center;">
+                    <p th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                </div>
+     		</div>
+		</div>
+           
+		<span></span>
+		<div class="bottom">
+			<div class="address">
+				<p>地址：上海市宝山区上大路99号 邮编：200444</p>
+				<p>信息服务电话：66133370</p>
+			</div>
+			<div class="copyright">
+				<p>技术支持 上海大学信息化工作办公室</p>
+				<p>Copyright © 2012-2017 Shanghai University, All Rights Reserved </p>
+			</div>
+		</div>
+    </div>
+    </form>
+
+</body>
+</html>
+<script type="text/javascript">
+    function ChangeValiCode(url) {
+        var item = document.getElementById('Img1');
+        item.setAttribute('src', url + GetTimestamp());
+        return false;
+
+    }
+    function GetTimestamp() {
+        return (new Date()).valueOf().toString();
+    }
+
+    function ValidateInput() {
+        $("#divError").empty();
+        var item = $("#txtUserName").val();
+        if (item == null || $.trim(item) == "") {
+            $("#divLoginAlert").html('请输入“学号”！');
+            $("#txtUserName").focus();
+            return false;
+        }
+        item = $("#txtPassword").val();
+        if (item == null || $.trim(item) == "") {
+            $("#divLoginAlert").html('请输入“密码”！');
+            $("#txtPassword").focus();
+            return false;
+        }
+        item = $("#txtValiCode").val();
+        if (item == null || $.trim(item) == "") {
+            $("#divLoginAlert").html('请输入“校验码”！');
+            $("#txtValiCode").focus();
+            return false;
+        }
+        return true;
+    }
+</script>
