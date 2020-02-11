@@ -11,8 +11,8 @@
 </title>
     <!--判断-->
 
-    <link href="Content/default/StyleLogin.css" th:href="@{/Content/default/StyleLogin.css}" rel="stylesheet" type="text/css" />
-    <link href="Content/default/login.css" th:href="@{/Content/default/login.css}" rel="stylesheet" type="text/css" />
+    <link href="Content/default/StyleLogin.css" th:href="@{Content/default/StyleLogin.css}" rel="stylesheet" type="text/css" />
+    <link href="Content/default/login.css" th:href="@{Content/default/login.css}" rel="stylesheet" type="text/css" />
 </head>
 <body  onload="daoying()">
     <form action="/user" method="post">
@@ -100,18 +100,21 @@
         if (item == null || $.trim(item) == "") {
             $("#divLoginAlert").html('请输入“学号”！');
             $("#txtUserName").focus();
+            return ture;
             return false;
         }
         item = $("#txtPassword").val();
         if (item == null || $.trim(item) == "") {
             $("#divLoginAlert").html('请输入“密码”！');
             $("#txtPassword").focus();
+            return true;
             return false;
         }
         item = $("#txtValiCode").val();
         if (item == null || $.trim(item) == "") {
             $("#divLoginAlert").html('请输入“校验码”！');
             $("#txtValiCode").focus();
+            return true;
             return false;
         }
         return true;
