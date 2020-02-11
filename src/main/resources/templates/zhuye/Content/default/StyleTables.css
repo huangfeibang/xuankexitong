@@ -1,0 +1,112 @@
+
+/*    按钮操作td    */
+.tdSubmit
+{
+	text-align:center;
+}
+
+/*    操作表单TABLE       */
+.tblop
+{
+	width:100%;
+	border:dotted 1px #ccc;
+	border-collapse:collapse;
+}
+.tblop tr th
+{
+	color:#2C4F80;
+	padding:3px;
+	line-height:25px;
+	vertical-align:middle;
+	border:dotted 1px #ccc;
+	background-color:#E5E6FA;
+}
+.tblop tr td
+{
+	padding:3px;
+	line-height:25px;
+	vertical-align:middle;
+	border:dotted 1px #ccc;
+}
+
+/*     列表类表格      */
+.tbllist
+{
+	width:100%;
+	border:solid 3px #6187B3;
+	border-collapse:collapse;
+	border-top:solid 5px #6187B3;
+	
+}
+.tbllist tr th
+{
+	color:#2C4F80;
+	line-height:22px;
+	padding:3px;
+	vertical-align:middle;
+	border:solid 1px #BCBCBE;
+	
+	background-color:#CFE4F7;
+	background-image:url(images/tbl_header.gif);
+	background-repeat:repeat-x;
+	border-bottom:none;
+}
+.tbllist tr td
+{
+	line-height:22px;
+	padding:3px;
+	vertical-align:middle;
+	border:solid 1px #BCBCBE;
+	border-top:none;
+	border-bottom:none;
+	background-image:url(images/td_bg.gif);
+	background-repeat:repeat-x;
+	background-position:left top;
+}
+.tbllist tr td a
+{
+	cursor:pointer;
+}
+.td_centercontent
+{
+	text-align:center;
+}
+.tdCheck
+{
+	cursor:pointer;
+}
+/*     列表类表格      */
+.tbllistNoimage
+{
+	width:100%;
+	border:solid 3px #6187B3;
+	border-collapse:collapse;
+	border-top:solid 5px #6187B3;
+	
+}
+.tbllistNoimage tr th
+{
+	color:#2C4F80;
+	line-height:22px;
+	padding:3px;
+	vertical-align:middle;
+	border:solid 1px #BCBCBE;
+	
+	background-color:#CFE4F7;
+	background-image:url(images/tbl_header.gif);
+	background-repeat:repeat-x;
+	border-bottom:none;
+}
+.tbllistNoimage tr td
+{
+	line-height:22px;
+	padding:3px;
+	vertical-align:middle;
+	border:solid 1px #BCBCBE;
+	background-repeat:repeat-x;
+	background-position:left top;
+}
+.tbllistNoimage tr td a
+{
+	cursor:pointer;
+}
