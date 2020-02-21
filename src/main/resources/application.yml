@@ -1,6 +1,6 @@
 spring:
   datasource:
-    username:
-    password: 
+    username: root
+    password: hfb.mysql
     url: jdbc:mysql://111.229.16.18:3306/student
     driver-class-name: com.mysql.cj.jdbc.Driver

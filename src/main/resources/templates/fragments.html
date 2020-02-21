@@ -1,7 +1,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+
+    <link href="./Content/default/jquery-treeview-css/jquery.treeview.css"
+          rel="stylesheet" type="text/css" th:href="@{/Content/default/jquery-treeview-css/jquery.treeview.css}"/>
+    <link href="./Content/default/jquery-ui-1.8.16.custom-css/jquery-ui-1.8.16.custom.css"
+          rel="stylesheet" type="text/css" th:href="@{/Content/default/jquery-ui-1.8.16.custom-css/jquery-ui-1.8.16.custom.css}"/>
+    <link href="./Content/default/StyleBase.css" rel="stylesheet"
+          type="text/css" th:href="@{/Content/default/StyleBase.css}"/>
+    <script src="./Scripts/datePicker/WdatePicker.js" type="text/javascript" th:src="@{/Scripts/datePicker/WdatePicker.js}"></script>
     <script src="./Scripts/jquery-1.5.1.min.js" type="text/javascript" th:src="@{/Scripts/jquery-1.5.1.min.js}"></script>
+    <script src="./Scripts/jquery-ui-1.8.16.custom-js/jquery-ui-1.8.16.custom.min.js"
+            type="text/javascript" th:src="@{/Scripts/jquery-ui-1.8.16.custom-js/jquery-ui-1.8.16.custom.min.js}"></script>
+    <script src="./Scripts/leftmenu.js" type="text/javascript" th:src="@{/Scripts/leftmenu.js}"></script>
+    <script src="./Scripts/jsCommon.js" type="text/javascript" th:src="@{/Scripts/jsCommon.js}"></script>
     <script src="./Scripts/jquery.form.js" type="text/javascript" th:src="@{/Scripts/jquery.form.js}"></script>
+    <script src="./Scripts/jquery-treeview-js/jquery.treeview.js"
+            type="text/javascript" th:src="@{/Scripts/jquery-treeview-js/jquery.treeview.js}"></script>
+
 </head>
 
 <div  th:fragment="xuanke">
@@ -50,4 +65,1128 @@
     <div id="result">
     </div>
 </div>
+
 <div th:fragment="blank"></div>
+
+<div th:fragment="QueryCourseTable">
+
+    <div>
+        <div class="divError">
+
+        </div>
+
+        <table class="tbllist">
+
+            <tr id="showStudent" style="">
+                <td colspan="20">
+                    <div style="float:left;">
+                        学号：&nbsp;&nbsp;&nbsp;[[${id}]]
+                    </div>
+                    <div style="float:left;margin-left:20px;">
+                        姓名：&nbsp;&nbsp;&nbsp;[[${user_nickname}]]
+                    </div>
+                    <div style="float: left; margin-left: 20px;">
+                        学院：&nbsp;&nbsp;&nbsp;计算机工程与科学学院
+                    </div>
+                    <div style="float: left; margin-left: 20px;">
+                        校区：&nbsp;&nbsp;&nbsp;本部
+                    </div>
+                    <div style="float:right;" id="showPrint">
+                        <input type="button" value="转至打印页" onclick="ActionToPrint()" />
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="20" style="font-weight:bolder;color:Blue;">
+                    当前已选课程
+
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    序号
+                </th>
+                <th>
+                    课程号
+
+                </th>
+                <th>
+                    课程名
+
+                </th>
+                <th>
+                    教师号
+
+                </th>
+                <th>
+                    教师名
+
+                </th>
+                <th>
+                    学分
+                </th>
+                <th>
+                    上课时间
+                </th>
+                <th>
+                    上课地点
+                </th>
+                <th>
+                    校区
+                </th>
+                <th style="color:Blue;">答疑时间</th>
+                <th style="color:Blue;">答疑地点</th>
+            </tr>
+
+            <tr th:each="CI:${CourseInformation}">
+                <td>
+                    [[${CI.SerialNumber}]]
+                </td>
+                <td>
+                    [[${CI.CourseNumber}]]
+                </td>
+                <td>
+                    [[${CI.CourseName}]]
+                </td>
+                <td>
+                    [[${CI.TeacherSerial}]]
+                </td>
+                <td>
+                    [[${CI.TeacherName}]]
+                </td>
+                <td>
+                    [[${CI.Credit}]]
+                </td>
+                <td>
+                    [[${CI.ClassTime}]]
+                </td>
+                <td>
+                    [[${CI.CLassPlace}]]
+                </td>
+                <td>
+                    [[${CI.campus}]]
+                </td>
+                <td>
+                    [[${CI.QuestionTime}]]
+                </td>
+                <td>
+                    [[${CI.QuestionPlace}]]
+                </td>
+            </tr>
+            <tr>
+                <td colspan="20">
+                    总学分：24（计算学分：24）
+
+                </td>
+            </tr>
+        </table>
+
+        <table class="tbllist">
+            <tr>
+                <th></th>
+                <th>
+                </th>
+
+                <th>
+                    一
+                </th>
+
+                <th>
+                    二
+                </th>
+
+                <th>
+                    三
+                </th>
+
+                <th>
+                    四
+                </th>
+
+                <th>
+                    五
+                </th>
+
+                <th>
+                    六
+                </th>
+
+                <th>
+                    日
+                </th>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">1</td>
+                <td style="width:80px;">
+                    8:00 ~ 8:45
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    C
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    D
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    E
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">2</td>
+                <td style="width:80px;">
+                    8:55 ~ 9:40
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    C
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    D
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    E
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">3</td>
+                <td style="width:80px;">
+                    10:00 ~ 10:45
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    C
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    D
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    A
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    C
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">4</td>
+                <td style="width:80px;">
+                    10:55 ~ 11:40
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    C
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    D
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    A
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    C
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">5</td>
+                <td style="width:80px;">
+                    12:10 ~ 12:55
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    G
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">6</td>
+                <td style="width:80px;">
+                    13:05 ~ 13:50
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    E
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    G
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">7</td>
+                <td style="width:80px;">
+                    14:10 ~ 14:55
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    E
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    J
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    D
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">8</td>
+                <td style="width:80px;">
+                    15:05 ~ 15:50
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    E
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    J
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    D
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">9</td>
+                <td style="width:80px;">
+                    16:00 ~ 16:45
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    E
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    B
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    I
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">10</td>
+                <td style="width:80px;">
+                    16:55 ~ 17:40
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    F
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    B
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    I
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">11</td>
+                <td style="width:80px;">
+                    18:00 ~ 18:45
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    F
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    H
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">12</td>
+                <td style="width:80px;">
+                    18:55 ~ 19:40
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    F
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    H
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="width:20px;">13</td>
+                <td style="width:80px;">
+                    19:50 ~ 20:35
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+                    F
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
+
+                <td style="text-align:center;vertical-align:middle;">
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+    <script type="text/javascript">
+        function ActionToPrint() {
+            window.open("../PrintPage/PrintCourseTable");
+        }
+    </script>
+</div>
+
+<div th:fragment="QueryCourse">
+
+    <table class="tblop" style="width: 100%;">
+        <tr>
+            <td colspan="10">
+                查询条件
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td style="width: 200px;">
+                课程号：<input id="S_CourseNo" name="S_CourseNo" style="width:120px;" type="text" value="" />
+            </td>
+            <td style="">
+                <div style="width: 60px; float: left;">
+                    课程名称：</div>
+                <input id="S_CourseName" name="S_CourseName" style="width:120px;float:left;" type="text" value="" />
+            </td>
+            <td>
+                选课人数未满：<input id="S_NotFull" name="S_NotFull" type="checkbox" value="true" /><input name="S_NotFull" type="hidden" value="false" />
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td style="width: 200px;">
+                教师号：<input id="S_TeachNo" name="S_TeachNo" style="width:120px;" type="text" value="" />
+            </td>
+            <td style="">
+                <div style="width: 60px; float: left;">
+                    教师姓名：</div>
+                <input id="S_TeachName" name="S_TeachName" style="width:120px;float:left;" type="text" value="" />
+            </td>
+            <td>
+                选课人数（小于、等于）：<input id="S_Enrolls" name="S_Enrolls" style="width:50px;" type="text" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 200px;">
+                上课时间：<input id="S_CourseTime" name="S_CourseTime" style="width:120px;" type="text" value="" />
+            </td>
+            <td>
+                <div style="width: 60px; float: left;">
+                    学&nbsp;分&nbsp;数：</div>
+                <input id="S_Credit" name="S_Credit" style="width:30px;float:left;" type="text" value="" />
+                <div style="width: 50px; float: left;margin-left:10px;">
+                    校区：</div>
+                <select id="S_Campus" name="S_Campus" style="float:left;"><option selected="selected" value="0">全部</option>
+                    <option value="1">本部</option>
+                    <option value="2">嘉定</option>
+                    <option value="3">延长</option>
+                    <option value="4">待用</option>
+                    <option value="5">徐泾</option>
+                    <option value="6">宝山东校区</option>
+                </select>
+            </td>
+            <td>
+                <div style="width:60px;float:left;">
+                    容量空余：
+
+                </div>
+                <div style="float:left;">
+                    <input id="S_MinCapacity" name="S_MinCapacity" style="width:30px;" type="text" value="" />
+                    —
+
+                    <input id="S_MaxCapacity" name="S_MaxCapacity" style="width:30px;" type="text" value="" />
+                    <span style="color:Red;">两个条件须同时输入</span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="查询" onclick="InitPage(1,20)"
+                       id="QueryAction" style="float: left;" />
+                <input type="button" value="重置" onclick="ClearWhere()" style="float: left; margin-left: 10px;" />
+
+            </td>
+            <td colspan="10">
+
+            </td>
+        </tr>
+        <tr><td colspan="20"><div id="msg"></div></td></tr>
+    </table>
+
+</div>
+
+<div th:fragment="QueryDeleteCourse">
+    <table class="tbllist">
+
+        <tr>
+            <td colspan="20" style="font-weight:bolder;color:Blue;">
+                当前被删选出的课程
+
+            </td>
+        </tr>
+        <tr>
+            <th>
+                序号
+            </th>
+            <th>
+                课程号
+
+            </th>
+            <th>
+                课程名
+
+            </th>
+            <th>
+                教师号
+
+            </th>
+            <th>
+                教师名
+
+            </th>
+            <th>
+                学分
+            </th>
+            <th>
+                上课时间
+            </th>
+            <th>
+                上课地点
+            </th>
+            <th>
+                校区
+            </th>
+        </tr>
+
+        <tr>
+            <td>
+                1
+            </td>
+            <td>
+                0085X078
+            </td>
+            <td>
+                游泳(男、女)
+            </td>
+            <td>
+                1093
+            </td>
+            <td>
+                许汸
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                四03-04 男女游泳
+            </td>
+            <td>
+                游泳馆大池
+            </td>
+            <td>
+                本部
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+
+<div th:fragment="QueryEnrollRank">
+    <table class="tbllist">
+        <tr>
+            <td colspan="10">
+                选课排名查询
+            </td>
+        </tr>
+        <tr>
+            <th>
+                课程号
+
+            </th>
+            <th>
+                课程名
+
+            </th>
+            <th>
+                教师号
+
+            </th>
+            <th>
+                教师名
+
+            </th>
+            <th>
+                选课人数
+            </th>
+            <th>
+                额定人数
+            </th>
+            <th>
+                排名
+
+            </th>
+        </tr>
+
+
+        <tr>
+            <td>
+                2200R200
+            </td>
+            <td>
+                霓裳之舞：服饰艺术与生活
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                王敏
+            </td>
+            <td>
+                100
+            </td>
+            <td>
+                100
+            </td>
+            <td>
+                79
+            </td>
+        </tr>
+
+
+    </table>
+</div>
+
+
+<div th:fragment="CourseReturnStudent">
+    <table class="tbllist">
+        <th>
+            课程号
+
+        </th>
+        <th>
+            课程名
+
+        </th>
+        <th>
+            教师号
+
+        </th>
+        <th>
+            教师名
+
+        </th>
+        <th>
+            学分
+        </th>
+        <th>
+            上课时间
+        </th>
+        <th>
+            上课地点
+        </th>
+        <tr th:each="CI:${CourseInformation}">
+            <td>
+                [[${CI.CourseNumber}]]
+            </td>
+            <td>
+                [[${CI.CourseName}]]
+            </td>
+            <td>
+                [[${CI.TeacherSerial}]]
+            </td>
+            <td>
+                [[${CI.TeacherName}]]
+            </td>
+            <td>
+                [[${CI.Credit}]]
+            </td>
+            <td>
+                [[${CI.ClassTime}]]
+            </td>
+            <td>
+                [[${CI.CLassPlace}]]
+            </td>
+    </table>
+</div>

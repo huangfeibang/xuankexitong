@@ -23,8 +23,6 @@ public class UserLogin {
     public ModelAndView login(@RequestParam String txtUserName,
                         @RequestParam String txtPassword,
                         Map<String, Object> map){
-        txtUserName = "17122113";
-        txtUserName = "17122113";
         List<Map<String, Object>> result = jdbcTemplate.queryForList("select password from std_users\n" +
                 "where std_users.id=?", txtUserName);
         String passwd = result.get(0).get("password").toString();
@@ -45,10 +43,12 @@ public class UserLogin {
         }
         else{
             System.out.println(txtUserName);
+            
             System.out.println(txtPassword);
             map.put("msg", "用户名密码错误");
-            return new ModelAndView("zhuye/return", "studentid", txtUserName);
-            //return "zhuye/return";
+            //return new ModelAndView("zhuye/return", "studentid", txtUserName);
+            return new ModelAndView("jiaowuchu/index", map);
+            //return "jiaowuchu/index";
             //return "jiaowuchu/index";
         }
 

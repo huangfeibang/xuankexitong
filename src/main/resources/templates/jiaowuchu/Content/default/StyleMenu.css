@@ -1,0 +1,39 @@
+#leftmenu_Accordion
+{
+	width:200px;
+}
+#leftmenu_Accordion ul
+{
+	margin: 0;
+	padding: 0;
+}
+#leftmenu_Accordion ul li
+{
+	list-style: none;
+	line-height: 23px;
+	padding-left: 20px;
+}
+#leftmenu_Accordion ul li a
+{
+	color: #002E5B;
+	text-decoration: none;
+}
+#leftmenu_Accordion ul li a:link
+{
+	color: #002E5B;
+	text-decoration: none;
+}
+#leftmenu_Accordion ul li a:hover
+{
+	color: #DF6800;
+	text-decoration: underline;
+}
+
+
+
+.ul_left_menu_basicset li
+{
+	background-image: url(images/icons/wrench_arrow.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+}

@@ -1,0 +1,167 @@
+/*     the base styles    */
+@import url(StyleMaster.css);
+@import url(StyleMenu.css);
+@import url(StyleTables.css);
+
+body
+{
+	font-size: 12px;
+	margin: 0;
+}
+.master_maindiv
+{
+	width: 1000px;
+}
+
+a
+{
+	color: #002E5B;
+}
+a:link
+{
+	color: #002E5B;
+}
+a:hover
+{
+	color: #DF6800;
+}
+
+.div_op
+{
+	width: 100%;
+	background-color: #D8E3ED; /*      height: 36px;          */
+	line-height: 36px;
+	vertical-align: middle;
+	padding: 2px;
+}
+.div_content
+{
+	width: 100%;
+}
+.short_btn
+{
+	width: 61px;
+	height: 23px;
+	line-height: 23px;
+	vertical-align: middle;
+	background: transparent;
+	border: none;
+	background-image: url(images/short_btn.gif);
+	background-repeat: no-repeat;
+	color: #07315D;
+}
+.short_btn:hover
+{
+	background: transparent;
+	border: none;
+	background-image: url(images/short_btn_hover.gif);
+	background-repeat: no-repeat;
+	color: #B9450B;
+}
+/*           Loading ...                */
+.divloading
+{
+	width: 100%;
+	height: 36px;
+	background-image: url(images/loading.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+input[type="text"]
+{
+	border: solid 1px #375B9E;
+	padding: 2px;
+	background-image: url(images/input_text_bg.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+}
+input[type="password"]
+{
+	border: solid 1px #375B9E;
+	padding: 2px;
+	background-image: url(images/input_text_bg.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+}
+.readonlyText
+{
+	background: none;
+	border: solid 1px #4F5351;
+	padding: 2px;
+	background-image: none;
+	background-color: #ddd;
+}
+.div_alert
+{
+	color: #CC0A0C;
+	padding: 5px;
+	padding-left: 25px;
+	margin-top: 8px;
+	font-weight: bold;
+	height: 20px;
+	line-height: 20px;
+	vertical-align: middle;
+	background-image: url(images/icons/alert.gif);
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+.divDropDown
+{
+	height: auto;
+	border: solid 1px #5B7489;
+	background-color: White;
+	position: absolute;
+	
+	max-height: 220px;
+	_height: expression(this.scrollHeight > 220 ? "220px" : "auto");
+	overflow: auto;
+	z-index:99999;
+	
+	visibility:hidden;
+}
+.divDropDownShow
+{
+	visibility:visible;
+}
+
+.divPager
+{
+	padding:2px 0 1px 0;
+	text-align:center;
+	width:100%;
+	height:20px;
+}
+.divPager div
+{
+	text-align:center;
+}
+.divPager div a
+{
+	padding:1px 1px 1px 1px;	
+	width:30px;		
+	color:#1175EE;
+	cursor:pointer;
+	font-weight:bolder;
+}
+.divError
+{
+	text-align:center;
+	color:Red;
+	font-weight:bolder;
+	width:100%;
+}
+
+.NeedBook
+{
+	display:none;
+}
+.showStudent
+{
+	display:none;
+}
+
+.linka
+{
+    text-decoration:underline;
+    cursor:pointer;
+}
