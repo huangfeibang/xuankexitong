@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员界面</title>
+</head>
+<body>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>
+
+        首页
+
+
+    </title>
+    <link href="./Content/default/jquery-treeview-css/jquery.treeview.css"
+          rel="stylesheet" type="text/css" th:href="@{/Content/default/jquery-treeview-css/jquery.treeview.css}"/>
+    <link href="./Content/default/jquery-ui-1.8.16.custom-css/jquery-ui-1.8.16.custom.css"
+          rel="stylesheet" type="text/css" th:href="@{/Content/default/jquery-ui-1.8.16.custom-css/jquery-ui-1.8.16.custom.css}"/>
+    <link href="./Content/default/StyleBase.css" rel="stylesheet"
+          type="text/css" th:href="@{/Content/default/StyleBase.css}"/>
+    <script src="./Scripts/datePicker/WdatePicker.js" type="text/javascript" th:src="@{/Scripts/datePicker/WdatePicker.js}"></script>
+    <script src="./Scripts/jquery-1.5.1.min.js" type="text/javascript" th:src="@{/Scripts/jquery-1.5.1.min.js}"></script>
+    <script src="./Scripts/jquery-ui-1.8.16.custom-js/jquery-ui-1.8.16.custom.min.js"
+            type="text/javascript" th:src="@{/Scripts/jquery-ui-1.8.16.custom-js/jquery-ui-1.8.16.custom.min.js}"></script>
+    <script src="./Scripts/leftmenu.js" type="text/javascript" th:src="@{/Scripts/leftmenu.js}"></script>
+    <script src="./Scripts/jsCommon.js" type="text/javascript" th:src="@{/Scripts/jsCommon.js}"></script>
+    <script src="./Scripts/jquery.form.js" type="text/javascript" th:src="@{/Scripts/jquery.form.js}"></script>
+    <script src="./Scripts/jquery-treeview-js/jquery.treeview.js"
+            type="text/javascript" th:src="@{/Scripts/jquery-treeview-js/jquery.treeview.js}"></script>
+
+</head>
+<body>
+    <div>
+        <div class="master_banner">
+
+            <div class="master_banner_validspace">
+                <a href="Home/StudentIndex" id="aindex" class="a_index">首 页</a>
+                <span class="span_currenttitle"></span>
+
+
+                <span class="span_currentUserInfo">
+                            <font color="red" >2019-2020学年冬季学期</font>
+                            |欢迎 [[${id}]]&nbsp;&nbsp;@S7&nbsp;&nbsp;|&nbsp;&nbsp;<a href="Login/Logout" class="alogout">安全退出</a>
+                        </span>
+            </div>
+        </div>
+        <div class="master_bannerborder">
+        </div>
+        <div class="master_maindiv">
+            <table class="master_maintable">
+                <tr>
+                    <td class="maintable_leftmenu" id="">
+                        <div id="leftmenu_information" style="width:200px;">
+
+                        </div>
+                        <!--  LEFT MENU  -->
+                        <div id="leftMenu">
+
+                            <div id="leftmenu_Accordion">
+                                <div class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" id="0">
+                                    <a href="#">学生信息</a>
+                                </div>
+                                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" style="padding: 1px 0px 0px 2px;">
+
+                                    <div style="line-height: 23px;">
+                                        账号：[[${id}]]
+                                    </div>
+                                    <div style="line-height: 23px;">
+                                        姓名：[[${user_nickname}]]
+                                    </div>
+                                </div>
+                                <div class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" id="98">
+                                    <a href="#">常用功能</a>
+                                </div>
+                                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+                                    <ul class="ul_left_menu_basicset">
+                                        <li>
+                                            <a href="CourseSelectionStudent/FastInput" th:href="@{/CourseSelectionAdmin/FastInput}" parentid="98">添加课程</a></li>
+                                        <li>
+                                            <a href="CourseSelectionStudent/FastInput" th:href="@{/CourseSelectionAdmin/EnlargeClass}" parentid="98">扩课</a></li>
+                                    </ul>
+                                </div>
+
+                        </div>
+                    </td>
+                    <td class="maintable_content">
+                        <!--  MAIN  -->
+
+                        <div class="div_master_content" th:replace="~{AdminFragments::${methodName}}" >
+
+
+
+
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="divDeleteConfirm" title="确定删除？">
+    </div>
+    <div>
+        <input type="hidden" id="p_result_true" value="成功" />
+        <input type="hidden" id="p_result_false" value="失败" />
+    </div>
+    </body>
+    </html>
+    <script type="text/javascript">
+        var $dialog = $('<div></div>')
+            .html("")
+            .dialog({
+                autoOpen: false,
+                modal: true,
+                buttons: { "确定": function () { $(this).dialog("close"); } },
+                title: '提示'
+            });
+
+        function CloseDialog(div) {
+            $("#" + div).empty().dialog("close");
+        }
+
+        function DisabledInput(id) {
+            $("#" + id).attr("disabled", "disabled");
+        }
+        function DisabledInputNot(id) {
+            $("#" + id).removeAttr("disabled");
+        }
+    </script>
+
+</body>
+</html>

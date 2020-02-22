@@ -1,0 +1,89 @@
+<div th:fragment="FastInput">
+
+    <form method="post" action="/CourseSelectionAdmin/add">
+        <table class="tbllist">
+            <tr>
+                <td colspan="10">
+                    添加课程
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    课程号
+                </th>
+                <th>
+                    教师号
+
+                </th>
+                <th>
+                    额定人数
+                </th>
+                <th>
+                    学分
+                </th>
+            </tr>
+
+
+            <tr>
+                <td>
+                    课程号：<input id="S_CourseNo" name="CourseNo" style="width:120px;" type="text" value="" />
+                </td>
+                <td>
+                    课程名：<input id="C_CourseNme" name="CourseName" style="width:120px;" type="text" value="" />
+                </td>
+                <td>
+                    教师号：<input id="S_CourseNo" name="TeacherNo" style="width:120px;" type="text" value="" />
+                </td>
+                <td>
+                    额定人数：<input id="S_CourseNo" name="capacity" style="width:120px;" type="text" value="" />
+                </td>
+                <td>
+                    学分：<input id="S_CourseNo" name="credit" style="width:120px;" type="text" value="" />
+                </td>
+            </tr>
+        </table>
+    <button type="submit">提交</button>
+    </form>
+</div>
+
+
+<div th:fragment="EnlargeClass">
+
+    <form method="post" action="/CourseSelectionAdmin/extend">
+        <table class="tbllist">
+            <tr>
+                <td colspan="10">
+                    扩课
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    课程号
+                </th>
+                <th>
+                    教师号
+
+                </th>
+                <th>
+                    扩充人数
+                </th>
+            </tr>
+
+
+            <tr>
+                <td>
+                    课程号：<input id="S_CourseNo" name="CourseNo" style="width:120px;" type="text" value="" />
+                </td>
+                <td>
+                    教师号：<input id="S_CourseNo" name="TeacherNo" style="width:120px;" type="text" value="" />
+                </td>
+                <td>
+                    扩充人数：<input id="number" name="number" style="width:120px;" type="text" value="" />
+                </td>
+            </tr>
+        </table>
+        <button type="submit">提交</button>
+    </form>
+</div>
+
+<div th:fragment="blank"></div>

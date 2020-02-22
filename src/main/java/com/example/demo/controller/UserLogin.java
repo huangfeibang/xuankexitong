@@ -21,8 +21,8 @@ public class UserLogin {
 
     @PostMapping("/user")
     public ModelAndView login(@RequestParam String txtUserName,
-                        @RequestParam String txtPassword,
-                        Map<String, Object> map){
+            @RequestParam String txtPassword,
+            Map<String, Object> map){
         List<Map<String, Object>> result = jdbcTemplate.queryForList("select password from std_users\n" +
                 "where std_users.id=?", txtUserName);
         String passwd = result.get(0).get("password").toString();
@@ -35,10 +35,25 @@ public class UserLogin {
             this.std = new Student();
             this.std.attris = model;
             System.out.println(model.get("nickname"));
-            model.put("methodName","blank");
-            ModelAndView view = new ModelAndView("zhuye/return",model);
-            System.out.println(view);
-            return view;
+            if(this.std.attris.get("identity").toString() == "0"){
+                model.put("methodName","blank");
+                ModelAndView view = new ModelAndView("zhuye/return",model);
+                System.out.println(view);
+                return view;
+            }
+            else if (this.std.attris.get("identity").toString() == "1"){
+                model.put("methodName","blank");
+                ModelAndView view = new ModelAndView("zhuye/return",model);
+                System.out.println(view);
+                return view;
+            }
+            else{
+                model.put("methodName","blank");
+                ModelAndView view = new ModelAndView("zhuye/AdminIndex",model);
+                System.out.println(view);
+                return view;
+            }
+
             //return "zhuye/return";
         }
         else{
