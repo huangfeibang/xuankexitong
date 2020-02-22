@@ -1140,7 +1140,7 @@
 
 
 <div th:fragment="CourseReturnStudent">
-    <table class="tbllist">
+    <table class="tbllist" id="CourseTable">
         <th>
             课程号
 
@@ -1161,13 +1161,10 @@
             学分
         </th>
         <th>
-            上课时间
-        </th>
-        <th>
-            上课地点
+            退课
         </th>
         <tr th:each="CI:${CourseInformation}">
-            <td>
+            <td th:id="CourseNumber">
                 [[${CI.CourseNumber}]]
             </td>
             <td>
@@ -1183,10 +1180,29 @@
                 [[${CI.Credit}]]
             </td>
             <td>
-                [[${CI.ClassTime}]]
+                <button id="deletebnt" onclick="deletefun(this)">退课</button>
             </td>
-            <td>
-                [[${CI.CLassPlace}]]
-            </td>
+        </tr>
     </table>
+    <script type="text/javascript" th:inline="javascript">
+        function deletefun(ths) {
+            let CourseNumber = ths.parentNode.parentNode.cells[0].innerText;
+            var params = new Array();
+            params['stdID'] = [[${id}]];
+            params['CourseNumber'] = CourseNumber;
+            var temp = document.createElement("form");
+            temp.action = "/CourseReturnStudent/Delete";
+            temp.method = "post";
+            temp.style.display = "none";
+            for(var x in params){
+                var opt = document.createElement("input");
+                opt.name = x;
+                opt.value = params[x];
+                temp.appendChild(opt);
+            }
+
+            console.log(CourseNumber);
+            temp.submit();
+        }
+    </script>
 </div>

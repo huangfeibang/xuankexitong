@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -123,7 +124,9 @@ public class QueryController {
                 "FROM XK,T,C \n" +
                 "WHERE XK.TNO=T.TNO AND XK.CNO=C.CNO AND XK.TNO=C.TNO AND XK.SNO=?\n",new MyRowMapper(),id);
         System.out.println(AllCourse);
+        List<Integer> buttonIDs = new LinkedList<>();
         model.put("CourseInformation", AllCourse);
+        model.put("buttonIDs", buttonIDs);
 
         ModelAndView view = new ModelAndView("zhuye/return", model);
         return view;
@@ -144,4 +147,18 @@ public class QueryController {
         ModelAndView view = new ModelAndView("zhuye/return", model);
         return view;
     }
+
+
+    @PostMapping("/CourseReturnStudent/Delete")
+    public String  Delete(@RequestParam String stdID,
+                          @RequestParam String CourseNumber){
+        System.out.println(stdID);
+        System.out.println(CourseNumber);
+
+        int rs = jdbcTemplate.update("delete from XK where SNO=? and CNO=?",stdID, CourseNumber);
+        System.out.println(rs);
+
+        return "redirect:/CourseReturnStudent/CourseReturn";
+    }
+
 }
