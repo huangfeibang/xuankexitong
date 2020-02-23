@@ -25,6 +25,11 @@ public class UserLogin {
             Map<String, Object> map){
         List<Map<String, Object>> result = jdbcTemplate.queryForList("select password from std_users\n" +
                 "where std_users.id=?", txtUserName);
+        if(result.size() == 0){
+            map.put("msg", "不存在此用户");
+            //return new ModelAndView("zhuye/return", "studentid", txtUserName);
+            return new ModelAndView("jiaowuchu/index", map);
+        }
         String passwd = result.get(0).get("password").toString();
         System.out.println(passwd);
         if(!StringUtils.isEmpty(txtUserName) && passwd.equals(txtPassword)){
@@ -34,16 +39,16 @@ public class UserLogin {
                     "where std_users.id=?",txtUserName);
             this.std = new Student();
             this.std.attris = model;
-            System.out.println(model.get("nickname"));
-            if(this.std.attris.get("identity").toString() == "0"){
+            //System.out.println(model.get("nickname"));
+            if("0".equals(this.std.attris.get("identity").toString() )){
                 model.put("methodName","blank");
                 ModelAndView view = new ModelAndView("zhuye/return",model);
                 System.out.println(view);
                 return view;
             }
-            else if (this.std.attris.get("identity").toString() == "1"){
+            else if ( "1".equals(this.std.attris.get("identity").toString())){
                 model.put("methodName","blank");
-                ModelAndView view = new ModelAndView("zhuye/return",model);
+                ModelAndView view = new ModelAndView("zhuye/TeacherIndex",model);
                 System.out.println(view);
                 return view;
             }

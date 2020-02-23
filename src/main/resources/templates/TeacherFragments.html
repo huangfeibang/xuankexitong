@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link href="./Content/default/jquery-treeview-css/jquery.treeview.css"
+          rel="stylesheet" type="text/css" th:href="@{/Content/default/jquery-treeview-css/jquery.treeview.css}"/>
+    <link href="./Content/default/jquery-ui-1.8.16.custom-css/jquery-ui-1.8.16.custom.css"
+          rel="stylesheet" type="text/css" th:href="@{/Content/default/jquery-ui-1.8.16.custom-css/jquery-ui-1.8.16.custom.css}"/>
+    <link href="./Content/default/StyleBase.css" rel="stylesheet"
+          type="text/css" th:href="@{/Content/default/StyleBase.css}"/>
+    <script src="./Scripts/datePicker/WdatePicker.js" type="text/javascript" th:src="@{/Scripts/datePicker/WdatePicker.js}"></script>
+    <script src="./Scripts/jquery-1.5.1.min.js" type="text/javascript" th:src="@{/Scripts/jquery-1.5.1.min.js}"></script>
+    <script src="./Scripts/jquery-ui-1.8.16.custom-js/jquery-ui-1.8.16.custom.min.js"
+            type="text/javascript" th:src="@{/Scripts/jquery-ui-1.8.16.custom-js/jquery-ui-1.8.16.custom.min.js}"></script>
+    <script src="./Scripts/leftmenu.js" type="text/javascript" th:src="@{/Scripts/leftmenu.js}"></script>
+    <script src="./Scripts/jsCommon.js" type="text/javascript" th:src="@{/Scripts/jsCommon.js}"></script>
+    <script src="./Scripts/jquery.form.js" type="text/javascript" th:src="@{/Scripts/jquery.form.js}"></script>
+    <script src="./Scripts/jquery-treeview-js/jquery.treeview.js"
+            type="text/javascript" th:src="@{/Scripts/jquery-treeview-js/jquery.treeview.js}"></script>
+
+</head>
+
+<div th:fragment="SelectionStudent">
+    <table class="tbllist">
+
+        <tr>
+            <th>
+                序号
+            </th>
+            <th>
+                学号
+            </th>
+            <th>
+                姓名
+            </th>
+            <th>
+                平时成绩
+            </th>
+            <th>
+                期末成绩
+            </th>
+            <th>
+                总评
+            </th>
+        </tr>
+
+        <tr th:each="SI:${StudentInformation}">
+            <td>
+                [[${SI['SerialNumber']}]]
+            </td>
+            <td>
+                [[${SI['SNO']}]]
+            </td>
+            <td>
+                [[${SI['SNAME']}]]
+            </td>
+            <td>
+                [[${SI['usual_performance']}]]
+            </td>
+            <td>
+                [[${SI['final_exam']}]]
+            </td>
+            <td>
+                [[${SI['total_mark']}]]
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+
+<div th:fragment="RegistrationResults">
+
+
+    <form method="post" action="/Teacher/Registration" id="GradeInput">
+        <table class="tbllist">
+            <tr>
+                <th>
+                    序号
+                </th>
+                <th>
+                    学号
+                </th>
+                <th>
+                    姓名
+                </th>
+                <th>
+                    平时成绩
+                </th>
+                <th>
+                    考核成绩
+                </th>
+            </tr>
+
+            <tr th:each="SI:${StudentInformation}">
+                <td>
+                    [[${SI['SerialNumber']}]]
+                </td>
+                <td>
+                    [[${SI['SNO']}]]
+                </td>
+                <td>
+                    [[${SI['SNAME']}]]
+                </td>
+                <td>
+                    <input id="S_UsualPerformance" th:name="${SI['SNO']+'UsualPerformance'}" style="width:120px;" type="text" value="" />
+                </td>
+                <td>
+                    <input id="S_FinalExam" th:name="${SI['SNO']}+'FinalExam'" style="width:120px;" type="text" value="" />
+                </td>
+
+            </tr>
+        </table>
+        <button type="submit" onclick="return postdata();">提交</button>
+    </form>
+
+    <script type="text/javascript">
+        var postdata = function() {
+            return true;
+            var form = document.getElementById("GradeInput");
+            var elements = {};
+            var tagElements = form.getElementsByTagName('input');
+            for (var j = 0; j < tagElements.length; j++){
+                var studentid= tagElements[j].name.substring(0,8);
+
+                console.log(studentid);
+                if(!elements.hasOwnProperty(studentid)){
+                    elements[studentid] = {};
+                }
+                elements[studentid][tagElements[j].name.substring(8)] = tagElements[j].value;
+                //
+            }
+            return false;
+        }
+
+    </script>
+
+</div>
+
+<div th:fragment="blank"></div>
