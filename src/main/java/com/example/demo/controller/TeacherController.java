@@ -49,6 +49,32 @@ public class TeacherController {
         ModelAndView view = new ModelAndView("zhuye/TeacherIndex", model);
         return view;
     }
+    @GetMapping("/StudentQuery/Chart")
+    public ModelAndView Chart(){
+        Map<String, Object> model = UserLogin.std.attris;
+        Map<String,Object> count = jdbcTemplate.queryForMap("SELECT SUM(CASE WHEN total_mark BETWEEN 90 AND 100 THEN 1 ELSE 0 END) AS A,\n" +
+                "SUM(CASE WHEN total_mark BETWEEN 80 AND 90 THEN 1 ELSE 0 END) AS B,\n" +
+                "SUM(CASE WHEN total_mark BETWEEN 70 AND 80 THEN 1 ELSE 0 END) AS C,\n" +
+                "SUM(CASE WHEN total_mark BETWEEN 60 AND 70 THEN 1 ELSE 0 END) AS D,\n" +
+                "SUM(CASE WHEN total_mark BETWEEN 0 AND 60 THEN 1 ELSE 0 END) AS E\n" +
+                "FROM SC");
+        Map<String, Object> average = jdbcTemplate.queryForMap("SELECT AVG(total_mark) as average FROM SC");
+
+        System.out.println(count);
+        String id = model.get("id").toString();
+        model.put("methodName", "Chart");
+        System.out.println(count);
+        int sum=0;
+        for (String key:count.keySet()){
+            String a = count.get(key).toString();
+            sum += Integer.parseInt(a);
+            model.put(key,a);
+        }
+        model.put("sum",sum);
+        model.put("average", average.get("average").toString());
+        ModelAndView view = new ModelAndView("zhuye/TeacherIndex", model);
+        return view;
+    }
 
 
     @PostMapping("/Teacher/Registration")

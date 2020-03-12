@@ -16,7 +16,8 @@
     <script src="./Scripts/jquery.form.js" type="text/javascript" th:src="@{/Scripts/jquery.form.js}"></script>
     <script src="./Scripts/jquery-treeview-js/jquery.treeview.js"
             type="text/javascript" th:src="@{/Scripts/jquery-treeview-js/jquery.treeview.js}"></script>
-
+    <script type="text/javascript" th:src="@{/js/protect.js}"></script>
+    <link href="./style.css" rel="stylesheet" th:href="@{/Uploads/js/201803/1521959020/css/style.css}">
 </head>
 
 <div th:fragment="SelectionStudent">
@@ -71,6 +72,39 @@
 <div th:fragment="RegistrationResults">
 
 
+    <script language=javascript>
+        //验证只能为数字
+
+        jQuery.extend({
+            alertWindow:function(e,n){var e=e,r;n===undefined?r="#00a8b7":r=n;
+                if($("body").find(".alertWindow1").length===0){
+                    var i='<div class="alertWindow1" style="width: 100%;height: 100%; background:rgba(0,0,0,0.5);position: fixed; left:0px; top: 0px; z-index: 9999;"><div  style="width: 360px; height: 170px;background: #FFF;margin: 300px auto;border: 2px solid #CFCFCF;">'+'<div  style="width: inherit;height: 20px;">'+'<div class="alertWindowCloseButton1" style="float: right; width: 10px; height: 30px;margin-right:5px;font-family:\'microsoft yahei\';color:'+r+';cursor: pointer;"></div>'+"</div>"+'<div id="successImg" class="alertWindowTitle" style="margin-top:10px;text-align:center;font-family:\'Verdana, Geneva, Arial, Helvetica, sans-serif\';font-size: 18px;font-weight: normal;color: '+r+';">'+"</div>"+'<div class="alertWindowContent" style="width:360px;height: 40px;text-align:center;font-size: 18px;color: #7F7F7F;margin-top:10px;">'+e+"</div>"+"</div>"+"</div>";
+                    $("body").append(i);
+                    var s=$(".alertWindow1");
+                    //2秒后自动关闭窗口
+                    setTimeout(function(){s.hide()},500);
+                }
+                else {$(".alertWindowContent").text(e),$(".alertWindow1").show(),setTimeout(function(){$(".alertWindow1").hide()},500);}
+            }
+        });
+
+        function checkfloat(el){
+            var val = $(el).val();
+
+            //jQuery.alertWindow("输入正确");
+            if(parseFloat(val).toString() == "NaN"){
+                console.log(parseFloat(val).toString() == "NaN");
+                jQuery.alertWindow("请输入数字");
+
+            }else{
+                console.log(val);
+                if(val<0 || val > 100){
+                    jQuery.alertWindow("成绩的范围在0-100");
+                }
+            }
+
+        }
+    </script>
     <form method="post" action="/Teacher/Registration" id="GradeInput">
         <table class="tbllist">
             <tr>
@@ -102,10 +136,10 @@
                     [[${SI['SNAME']}]]
                 </td>
                 <td>
-                    <input id="S_UsualPerformance" th:name="${SI['SNO']+'UsualPerformance'}" style="width:120px;" type="text" value="" />
+                    <input id="S_UsualPerformance" th:name="${SI['SNO']+'UsualPerformance'}" style="width:120px;" type="text" value="" onblur="checkfloat(this)"/>
                 </td>
                 <td>
-                    <input id="S_FinalExam" th:name="${SI['SNO']}+'FinalExam'" style="width:120px;" type="text" value="" />
+                    <input id="S_FinalExam" th:name="${SI['SNO']}+'FinalExam'" style="width:120px;" type="text" value="" onblur="checkfloat(this)"/>
                 </td>
 
             </tr>
@@ -137,3 +171,86 @@
 </div>
 
 <div th:fragment="blank"></div>
+
+<div id="bar-chart" th:fragment="Chart">
+    <div class="graph">
+        <ul class="x-axis">
+            <li><span>0-60</span></li>
+            <li><span>60-70</span></li>
+            <li><span>70-80</span></li>
+            <li><span>80-90</span></li>
+            <li><span>90-100</span></li>
+        </ul>
+        <ul class="y-axis">
+            <li><span>[[${sum}/4*4]]</span></li>
+            <li><span>[[${sum}/4*3]]</span></li>
+            <li><span>[[${sum}/4*2]]</span></li>
+            <li><span>[[${sum}/4*1]]</span></li>
+            <li><span>0</span></li>
+        </ul>
+        <div class="bars">
+            <div class="bar-group">
+                <div>
+                    <span></span>
+                </div>
+                <div class="bar bar-2 stat-2" th:style=" 'height:'+(*{E}/${sum}*100)+'%' ">
+                    <span>[[${E}]]</span>
+                </div>
+                <div>
+                    <span>[[${E}]]</span>
+                </div>
+            </div>
+
+            <div class="bar-group">
+                <div>
+                    <span></span>
+                </div>
+                <div class="bar bar-5 stat-2" th:style=" 'height:'+(*{D}/${sum}*100)+'%' ">
+                    <span>[[${D}]]</span>
+                </div>
+                <div>
+                    <span>[[${D}]]</span>
+                </div>
+            </div>
+
+            <div class="bar-group">
+                <div>
+                    <span></span>
+                </div>
+                <div class="bar bar-8 stat-2" th:style=" 'height:'+(*{C}/${sum}*100)+'%' ">
+                    <span>[[${C}]]</span>
+                </div>
+                <div>
+                    <span>[[${C}]]</span>
+                </div>
+            </div>
+
+            <div class="bar-group">
+                <div>
+                    <span></span>
+                </div>
+                <div class="bar bar-11 stat-2" th:style=" 'height:'+(*{B}/${sum}*100)+'%' ">
+                    <span>[[${B}]]</span>
+                </div>
+                <div>
+                    <span>[[${B}]]</span>
+                </div>
+            </div>
+
+            <div class="bar-group">
+                <div>
+                    <span></span>
+                </div>
+                <div class="bar bar-14 stat-2" th:style=" 'height:'+(*{A}/${sum}*100)+'%' ">
+                    <span>[[${A}]]</span>
+                </div>
+                <div>
+                    <span>[[${A}]]</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="position: relative;top: 50px;">
+        平均分：[[${average}]]
+    </div>
+</div>

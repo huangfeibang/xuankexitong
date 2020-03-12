@@ -31,7 +31,7 @@
         <div class="master_banner">
 
             <div class="master_banner_validspace">
-                <a href="Home/StudentIndex" id="aindex" class="a_index">首 页</a>
+                <a href="Home/zhuye/zhuye/StudentIndex" id="aindex" class="a_index">首 页</a>
                 <span class="span_currenttitle"></span>
 
 
@@ -84,10 +84,6 @@
                                         <a href="CourseSelectionStudent/FastInput" th:href="@{/CourseSelectionStudent/FastInput}" parentid="98">选课</a></li>
                                     <li>
                                         <a href="CourseReturnStudent/CourseReturn" th:href="@{/CourseReturnStudent/CourseReturn}" parentid="98">退课</a></li>
-                                    <li>
-                                        <a href="CourseReturnStudent/CourseReturn" th:href="@{/CourseReturnStudent/SchoolReturn}" parentid="98">一键退学</a></li>
-                                    <li>
-                                        <a href="CourseReturnStudent/CourseReturn" th:href="@{/CourseReturnStudent/SchoolReturn}" parentid="98">每日自动报</a></li>
                                 </ul>
                             </div>
                             <div class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" id="99">
@@ -98,11 +94,7 @@
                                     <li>
                                         <a href="StudentQuery/QueryCourseTable" th:href="@{/StudentQuery/QueryCourseTable}" parentid="99">课表查询</a></li>
                                     <li>
-                                        <a href="StudentQuery/QueryDeleteCourse" th:href="@{/StudentQuery/QueryDeleteCourse}"  parentid="99">删选课程查询</a></li>
-                                    <li>
                                         <a href="StudentQuery/QueryCourse" th:href="@{/StudentQuery/QueryCourse}" parentid="99">课程查询</a></li>
-                                    <li>
-                                        <a href="StudentQuery/QueryEnrollRank" th:href="@{/StudentQuery/QueryEnrollRank}" parentid="99">选课排名查询</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -112,7 +104,7 @@
                 <td class="maintable_content">
                     <!--  MAIN  -->
 
-                    <div class="div_master_content" th:replace="~{fragments::${methodName}}">
+                    <div class="div_master_content" th:replace="~{StudentFragments::${methodName}}" id="divCourseMain">
 
 
 

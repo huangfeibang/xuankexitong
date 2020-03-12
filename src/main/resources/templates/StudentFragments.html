@@ -16,7 +16,8 @@
     <script src="./Scripts/jquery.form.js" type="text/javascript" th:src="@{/Scripts/jquery.form.js}"></script>
     <script src="./Scripts/jquery-treeview-js/jquery.treeview.js"
             type="text/javascript" th:src="@{/Scripts/jquery-treeview-js/jquery.treeview.js}"></script>
-
+    <script type="text/javascript" th:src="@{/static/js/protect.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/Uploads/js/201803/1521959020/css/style.css}">
 </head>
 
 <div  th:fragment="xuanke">
@@ -144,9 +145,6 @@
                     sdff
                 </td>
                 <td>
-                    [[${CI.SerialNumber}]]
-                </td>
-                <td>
                     [[${CI.CourseNumber}]]
                 </td>
                 <td>
@@ -178,104 +176,9 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="20">
-                    总学分：24（计算学分：24）
-
-                </td>
             </tr>
         </table>
 
-        <table class="tbllist">
-            <tr>
-                <th></th>
-                <th>
-                </th>
-
-                <th>
-                    一
-                </th>
-
-                <th>
-                    二
-                </th>
-
-                <th>
-                    三
-                </th>
-
-                <th>
-                    四
-                </th>
-
-                <th>
-                    五
-                </th>
-
-                <th>
-                    六
-                </th>
-
-                <th>
-                    日
-                </th>
-
-            </tr>
-
-            <tr>
-                <td style="width:20px;">1</td>
-                <td style="width:80px;">
-                    8:00 ~ 8:45
-                </td>
-
-                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
-
-                <td style="text-align:center;vertical-align:middle;">
-
-                </td>
-
-                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
-
-                <td style="text-align:center;vertical-align:middle;">
-                    C
-
-                </td>
-
-                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
-
-                <td style="text-align:center;vertical-align:middle;">
-                    D
-
-                </td>
-
-                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
-
-                <td style="text-align:center;vertical-align:middle;">
-                    E
-
-                </td>
-
-                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
-
-                <td style="text-align:center;vertical-align:middle;">
-
-                </td>
-
-                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
-
-                <td style="text-align:center;vertical-align:middle;">
-
-                </td>
-
-                <!--单元格位置的索引   （当前列 -1 ）* 总行数 + 行数 + 1 -->
-
-                <td style="text-align:center;vertical-align:middle;">
-
-                </td>
-
-            </tr>
-
-
-        </table>
 
     </div>
     <script type="text/javascript">
@@ -287,84 +190,114 @@
 
 <div th:fragment="QueryCourse">
 
-    <table class="tblop" style="width: 100%;">
-        <tr>
-            <td colspan="10">
-                查询条件
-            </td>
-        </tr>
-        <tr style="height: 30px;">
-            <td style="width: 200px;">
-                课程号：<input id="S_CourseNo" name="S_CourseNo" style="width:120px;" type="text" value="" />
-            </td>
-            <td style="">
-                <div style="width: 60px; float: left;">
-                    课程名称：</div>
-                <input id="S_CourseName" name="S_CourseName" style="width:120px;float:left;" type="text" value="" />
-            </td>
-            <td>
-                选课人数未满：<input id="S_NotFull" name="S_NotFull" type="checkbox" value="true" /><input name="S_NotFull" type="hidden" value="false" />
-            </td>
-        </tr>
-        <tr style="height: 30px;">
-            <td style="width: 200px;">
-                教师号：<input id="S_TeachNo" name="S_TeachNo" style="width:120px;" type="text" value="" />
-            </td>
-            <td style="">
-                <div style="width: 60px; float: left;">
-                    教师姓名：</div>
-                <input id="S_TeachName" name="S_TeachName" style="width:120px;float:left;" type="text" value="" />
-            </td>
-            <td>
-                选课人数（小于、等于）：<input id="S_Enrolls" name="S_Enrolls" style="width:50px;" type="text" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 200px;">
-                上课时间：<input id="S_CourseTime" name="S_CourseTime" style="width:120px;" type="text" value="" />
-            </td>
-            <td>
-                <div style="width: 60px; float: left;">
-                    学&nbsp;分&nbsp;数：</div>
-                <input id="S_Credit" name="S_Credit" style="width:30px;float:left;" type="text" value="" />
-                <div style="width: 50px; float: left;margin-left:10px;">
-                    校区：</div>
-                <select id="S_Campus" name="S_Campus" style="float:left;"><option selected="selected" value="0">全部</option>
-                    <option value="1">本部</option>
-                    <option value="2">嘉定</option>
-                    <option value="3">延长</option>
-                    <option value="4">待用</option>
-                    <option value="5">徐泾</option>
-                    <option value="6">宝山东校区</option>
-                </select>
-            </td>
-            <td>
-                <div style="width:60px;float:left;">
-                    容量空余：
+    <script type="text/javascript">
+        $(function () {
+            InitPage();
+        });
+        function InitPage() {
+            var istudentNo = $("#UserNo").val();
+            var params = {
+                type: "POST",
+                url: "/StudentQuery/CtrlViewQueryCourseTable",
+                data: { studentNo: "istudentNo", ddsf: "dfdsf"},
+                cache: false,
+                beforeSend: function () {
+                    $("#divCourseMain").html("<div style=\"text-align:center; margin-top:10px;\"><img src='/Content/default/images/loading.gif' alt=''/></div>");
+                },
+                success: function (html) {
 
-                </div>
-                <div style="float:left;">
-                    <input id="S_MinCapacity" name="S_MinCapacity" style="width:30px;" type="text" value="" />
-                    —
+                    $("#divCourseMain").empty().html(html);
+                }
+            }
 
-                    <input id="S_MaxCapacity" name="S_MaxCapacity" style="width:30px;" type="text" value="" />
-                    <span style="color:Red;">两个条件须同时输入</span>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="button" value="查询" onclick="InitPage(1,20)"
-                       id="QueryAction" style="float: left;" />
-                <input type="button" value="重置" onclick="ClearWhere()" style="float: left; margin-left: 10px;" />
+            $("#formdata").ajaxSubmit(params)
+        }
+    </script>
 
-            </td>
-            <td colspan="10">
+    <form id="formdata" action="/StudentQuery/CtrlViewQueryCourseTable" method="post">
+        <table class="tblop" style="width: 100%;">
+            <tr>
+                <td colspan="10">
+                    查询条件
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="width: 200px;">
+                    课程号：<input id="S_CourseNo" name="S_CourseNo" style="width:120px;" type="text" value="" />
+                </td>
+                <td style="">
+                    <div style="width: 60px; float: left;">
+                        课程名称：</div>
+                    <input id="S_CourseName" name="S_CourseName" style="width:120px;float:left;" type="text" value="" />
+                </td>
+                <td>
+                    选课人数未满：<input id="S_NotFull" name="S_NotFull" type="checkbox" value="true" /><input name="S_NotFull" type="hidden" value="false" />
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="width: 200px;">
+                    教师号：<input id="S_TeachNo" name="S_TeachNo" style="width:120px;" type="text" value="" />
+                </td>
+                <td style="">
+                    <div style="width: 60px; float: left;">
+                        教师姓名：</div>
+                    <input id="S_TeachName" name="S_TeachName" style="width:120px;float:left;" type="text" value="" />
+                </td>
+                <td>
+                    选课人数（小于、等于）：<input id="S_Enrolls" name="S_Enrolls" style="width:50px;" type="text" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px;">
+                    上课时间：<input id="S_CourseTime" name="S_CourseTime" style="width:120px;" type="text" value="" />
+                </td>
+                <td>
+                    <div style="width: 60px; float: left;">
+                        学&nbsp;分&nbsp;数：</div>
+                    <input id="S_Credit" name="S_Credit" style="width:30px;float:left;" type="text" value="" />
+                    <div style="width: 50px; float: left;margin-left:10px;">
+                        校区：</div>
+                    <select id="S_Campus" name="S_Campus" style="float:left;"><option selected="selected" value="0">全部</option>
+                        <option value="1">本部</option>
+                        <option value="2">嘉定</option>
+                        <option value="3">延长</option>
+                        <option value="4">待用</option>
+                        <option value="5">徐泾</option>
+                        <option value="6">宝山东校区</option>
+                    </select>
+                </td>
+                <td>
+                    <div style="width:60px;float:left;">
+                        容量空余：
 
-            </td>
-        </tr>
-        <tr><td colspan="20"><div id="msg"></div></td></tr>
-    </table>
+                    </div>
+                    <div style="float:left;">
+                        <input id="S_MinCapacity" name="S_MinCapacity" style="width:30px;" type="text" value="" />
+                        —
+
+                        <input id="S_MaxCapacity" name="S_MaxCapacity" style="width:30px;" type="text" value="" />
+                        <span style="color:Red;">两个条件须同时输入</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" value="查询" id="QueryAction" style="float: left;">查询</button>
+                    <!--
+                    <input type="button" value="查询" onclick="InitPage(1,20)"
+                           id="QueryAction" style="float: left;" />
+                     -->
+                    <input type="button" value="重置" onclick="ClearWhere()" style="float: left; margin-left: 10px;" />
+
+                </td>
+                <td colspan="10">
+
+                </td>
+            </tr>
+            <tr><td colspan="20"><div id="msg"></div></td></tr>
+        </table>
+
+    </form>
 
 </div>
 
@@ -573,9 +506,54 @@
                 opt.value = params[x];
                 temp.appendChild(opt);
             }
-
+            $("body").append(temp);
             console.log(CourseNumber);
             temp.submit();
         }
     </script>
 </div>
+
+<div th:fragment="CtrlViewQueryCourseTableResult">
+    <table class="tbllist" id="CourseTable">
+        <th>
+            课程号
+
+        </th>
+        <th>
+            课程名
+
+        </th>
+        <th>
+            教师号
+
+        </th>
+        <th>
+            教师名
+
+        </th>
+        <th>
+            学分
+        </th>
+        <tr th:each="CI:${CourseInformation}">
+            <td th:id="CourseNumber">
+                [[${CI.CourseNumber}]]
+            </td>
+            <td>
+                [[${CI.CourseName}]]
+            </td>
+            <td>
+                [[${CI.TeacherSerial}]]
+            </td>
+            <td>
+                [[${CI.TeacherName}]]
+            </td>
+            <td>
+                [[${CI.Credit}]]
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+

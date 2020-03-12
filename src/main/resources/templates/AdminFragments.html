@@ -48,6 +48,73 @@
     </form>
 </div>
 
+<div th:fragment="AddUser">
+
+    <form method="post" action="/CourseSelectionAdmin/addUser">
+        <table class="tbllist">
+            <tr>
+                <td colspan="10">
+                    添加用户
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    账号
+                </th>
+                <th>
+                    密码
+                </th>
+                <th>
+                    姓名
+                </th>
+                <th>
+                    身份
+                </th>
+                <th>
+                    性别
+                </th>
+                <th>
+                    所在院系
+                </th>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <input id="U_Account" name="U_Account" style="width:120px;" type="text" value="" />
+                </td>
+                <td>
+                    <input id="U_Passwd" name="U_passwd" style="width:120px;" type="text" value="" />
+                </td>
+                <td>
+                    <input id="U_Name" name="U_Name" style="width:120px;" type="text" value="" />
+                </td>
+                <td>
+                    <select name="U_identity">
+                        <option value="0">学生</option>
+                        <option value="1">教师</option>
+                        <option value="2">管理员</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="U_Sex">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="U_Department">
+                        <option value="计算机">计算机</option>
+                        <option value="机自">机自</option>
+                        <option value="文学院">文学院</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <button type="submit">提交</button>
+    </form>
+</div>
+
 
 <div th:fragment="EnlargeClass">
 

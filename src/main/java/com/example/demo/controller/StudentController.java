@@ -4,7 +4,6 @@ package com.example.demo.controller;
 import com.example.demo.controller.bean.Curriculum;
 import com.example.demo.controller.bean.MyRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,13 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+//import sun.text.normalizer.NormalizerBase;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-public class QueryController {
+public class StudentController {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
@@ -59,6 +59,7 @@ public class QueryController {
                                 System.out.println("选课成功");
                                 int rs = jdbcTemplate.update("UPDATE C SET SIZE=C.SIZE+1 WHERE\n" +
                                         "C.CNO=? AND C.TNO=?", kh, gh);
+                                int rs1 = jdbcTemplate.update("insert into SC (SNO,CNO) values(?,?)", id, kh);
                                 return "选课成功";
                             }else{
                                 return "选课失败";
@@ -84,7 +85,7 @@ public class QueryController {
         Map<String, Object> model = UserLogin.std.attris;
         System.out.println(model);
         model.put("methodName", "xuanke");
-        ModelAndView view = new ModelAndView("zhuye/return",model);
+        ModelAndView view = new ModelAndView("zhuye/StudentIndex",model);
         return view;
     }
 
@@ -100,7 +101,7 @@ public class QueryController {
                 "WHERE XK.TNO=T.TNO AND XK.CNO=C.CNO AND XK.TNO=C.TNO AND XK.SNO=?\n",new MyRowMapper(),id);
         System.out.println(AllCourse);
         model.put("CourseInformation", AllCourse);
-        ModelAndView view = new ModelAndView("zhuye/return", model);
+        ModelAndView view = new ModelAndView("zhuye/StudentIndex", model);
         return view;
     }
 
@@ -109,7 +110,7 @@ public class QueryController {
     public ModelAndView QueryCourse(){
         Map<String, Object> model = UserLogin.std.attris;
         model.put("methodName", "QueryCourse");
-        ModelAndView view = new ModelAndView("zhuye/return", model);
+        ModelAndView view = new ModelAndView("zhuye/StudentIndex", model);
         return view;
     }
 
@@ -128,7 +129,7 @@ public class QueryController {
         model.put("CourseInformation", AllCourse);
         model.put("buttonIDs", buttonIDs);
 
-        ModelAndView view = new ModelAndView("zhuye/return", model);
+        ModelAndView view = new ModelAndView("zhuye/StudentIndex", model);
         return view;
     }
 
@@ -136,7 +137,7 @@ public class QueryController {
     public ModelAndView QueryDeleteCourse(){
         Map<String, Object> model = UserLogin.std.attris;
         model.put("methodName", "QueryDeleteCourse");
-        ModelAndView view = new ModelAndView("zhuye/return", model);
+        ModelAndView view = new ModelAndView("zhuye/StudentIndex", model);
         return view;
     }
 
@@ -144,7 +145,7 @@ public class QueryController {
     public ModelAndView QueryEnrollRank(){
         Map<String, Object> model = UserLogin.std.attris;
         model.put("methodName", "QueryEnrollRank");
-        ModelAndView view = new ModelAndView("zhuye/return", model);
+        ModelAndView view = new ModelAndView("zhuye/StudentIndex", model);
         return view;
     }
 
@@ -159,6 +160,30 @@ public class QueryController {
         System.out.println(rs);
 
         return "redirect:/CourseReturnStudent/CourseReturn";
+    }
+
+    @PostMapping("/StudentQuery/CtrlViewQueryCourseTable")
+    public ModelAndView CtrlViewQueryCourseTable(@RequestParam Map<String, Object> params){
+        System.out.println(params);
+        List<Curriculum> AllCourse = jdbcTemplate.query("SELECT C.CNO,C.TNO,T.TName,C.CNAME,C.CREDIT\n" +
+                "FROM T,C\n" +
+                "WHERE T.TNO=C.TNO AND \n" +
+                "(C.CNO=? or ?=\"\") and " +
+                "(C.CNAME=? or ?=\"\") and " +
+                "(C.CREDIT=? or ?=\"\") and " +
+                "(C.TNAME=? or ?=\"\") and " +
+                "(C.TNO=? or ?=\"\")"
+                ,new MyRowMapper(),params.get("S_CourseNo").toString(),params.get("S_CourseNo").toString(),
+                params.get("S_CourseName").toString(),params.get("S_CourseName").toString(),
+                params.get("S_Credit").toString(),params.get("S_Credit").toString(),
+                params.get("S_TeachName").toString(),params.get("S_TeachName").toString(),
+                params.get("S_TeachNo").toString(),params.get("S_TeachNo").toString());
+        System.out.println(AllCourse);
+        Map<String, Object> model = UserLogin.std.attris;
+        model.put("methodName", "CtrlViewQueryCourseTableResult");
+        model.put("CourseInformation",AllCourse);
+        ModelAndView view = new ModelAndView("zhuye/StudentIndex", model);
+        return view;
     }
 
 }

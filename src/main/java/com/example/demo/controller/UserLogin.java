@@ -4,7 +4,6 @@ import com.example.demo.controller.bean.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,7 +41,7 @@ public class UserLogin {
             //System.out.println(model.get("nickname"));
             if("0".equals(this.std.attris.get("identity").toString() )){
                 model.put("methodName","blank");
-                ModelAndView view = new ModelAndView("zhuye/return",model);
+                ModelAndView view = new ModelAndView("zhuye/StudentIndex",model);
                 System.out.println(view);
                 return view;
             }

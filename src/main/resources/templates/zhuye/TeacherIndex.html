@@ -19,6 +19,7 @@
     <script src="./Scripts/jquery.form.js" type="text/javascript" th:src="@{/Scripts/jquery.form.js}"></script>
     <script src="./Scripts/jquery-treeview-js/jquery.treeview.js"
             type="text/javascript" th:src="@{/Scripts/jquery-treeview-js/jquery.treeview.js}"></script>
+    <link href="./style.css" rel="stylesheet" th:href="@{/Uploads/js/201803/1521959020/css/style.css}">
 </head>
 
 
@@ -27,7 +28,7 @@
         <div class="master_banner">
 
             <div class="master_banner_validspace">
-                <a href="Home/StudentIndex" id="aindex" class="a_index">首 页</a>
+                <a href="Home/zhuye/StudentIndex" id="aindex" class="a_index">首 页</a>
                 <span class="span_currenttitle"></span>
 
 
@@ -73,13 +74,25 @@
                                             <a href="CourseSelectionStudent/FastInput" th:href="@{/Teacher/RegistrationResults}" parentid="98">成绩录入</a></li>
                                     </ul>
                                 </div>
+
+
+                                <div class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" id="99">
+                                    <a href="#">数据查询</a>
+                                </div>
+                                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+                                    <ul class="ul_left_menu_basicset">
+                                        <li>
+                                            <a href="StudentQuery/QueryCourseTable" th:href="@{/StudentQuery/Chart}" parentid="99">成绩统计</a></li>
+                                    </ul>
+                                </div>
+
                             </div>
                         </div>
                     </td>
                     <td class="maintable_content">
                         <!--  MAIN  -->
 
-                        <div class="div_master_content" th:replace="~{TeacherFragments::${methodName}}" >
+                        <div class="div_master_content" th:replace="~{TeacherFragments::${methodName}}" id="divCourseMain" >
 
 
 
