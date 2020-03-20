@@ -52,12 +52,12 @@ public class TeacherController {
     @GetMapping("/StudentQuery/Chart")
     public ModelAndView Chart(){
         Map<String, Object> model = UserLogin.std.attris;
-        Map<String,Object> count = jdbcTemplate.queryForMap("SELECT SUM(CASE WHEN total_mark BETWEEN 90 AND 100 THEN 1 ELSE 0 END) AS A,\n" +
+        Map<String,Object> count = jdbcTemplate.queryForMap("SELECT SUM(CASE WHEN total_mark BETWEEN 90 AND 100 THEN 1 ELSE 0 END)  AS A,\n" +
                 "SUM(CASE WHEN total_mark BETWEEN 80 AND 90 THEN 1 ELSE 0 END) AS B,\n" +
                 "SUM(CASE WHEN total_mark BETWEEN 70 AND 80 THEN 1 ELSE 0 END) AS C,\n" +
                 "SUM(CASE WHEN total_mark BETWEEN 60 AND 70 THEN 1 ELSE 0 END) AS D,\n" +
                 "SUM(CASE WHEN total_mark BETWEEN 0 AND 60 THEN 1 ELSE 0 END) AS E\n" +
-                "FROM SC");
+                "FROM SC where SC.TNO=?",model.get("id").toString());
         Map<String, Object> average = jdbcTemplate.queryForMap("SELECT AVG(total_mark) as average FROM SC");
 
         System.out.println(count);
@@ -80,6 +80,7 @@ public class TeacherController {
     @PostMapping("/Teacher/Registration")
     public String Registration(@RequestParam Map<String, Object> params){
         System.out.println(params);
+        Map<String, Object> model = UserLogin.std.attris;
         Map<String, Map<String, Object>> data = new HashMap<String, Map<String, Object>>();
         for (String key : params.keySet()) {
             String studentNumber = key.substring(0,8);
@@ -95,8 +96,8 @@ public class TeacherController {
             Float a = Float.parseFloat(data.get(key).get("UsualPerformance").toString());
             Float b = Float.parseFloat(data.get(key).get("FinalExam").toString());
             if(a >=0 && a <= 100 && b>=0 && b<=100){
-                jdbcTemplate.update("REPLACE into SC(SNO, CNO, usual_performance,final_exam, total_mark)\n" +
-                                "VALUES (?, \"C1\",?,?,?)", key, a,b,
+                jdbcTemplate.update("REPLACE into SC(TNO, SNO, CNO, usual_performance,final_exam, total_mark)\n" +
+                                "VALUES (?,?, \"C1\",?,?,?)", model.get("id").toString(), key, a,b,
                         0.3*a+0.7*b);
             }else{
                 System.out.println("数据有错");
